@@ -16,8 +16,6 @@ function UpdateSettingsForm() {
     breakfastPrice,
   } = settings;
 
-  console.log(settings);
-
   const handleUpdateSetting = (evnt, field) => {
     const { value } = evnt.target;
 

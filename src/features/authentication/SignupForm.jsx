@@ -11,7 +11,6 @@ function SignupForm() {
   const { signup, isPending } = useSignup();
 
   const onSubmit = ({ fullName, email, password }) => {
-    console.log("fotm submitting");
     signup({ fullName, email, password }, { onSettled: reset });
   };
 

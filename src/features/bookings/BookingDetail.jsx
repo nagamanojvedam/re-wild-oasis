@@ -41,8 +41,6 @@ function BookingDetail() {
 
   const { status, id: bookingId } = booking || {};
 
-  console.log(booking);
-
   return (
     <>
       <Row type="horizontal">
