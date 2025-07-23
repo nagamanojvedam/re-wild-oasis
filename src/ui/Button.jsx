@@ -52,12 +52,16 @@ const Button = styled.button`
   border: none;
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
-  ${(props) => sizes[props.size] + " " + variations[props.variation]}
+  ${(props) =>
+    sizes[props.size || "medium"] +
+    " " +
+    variations[props.variation || "primary"]}
 `;
 
-Button.defaultProps = {
-  variation: "primary",
-  size: "medium",
-};
+// Deprecated in React 18+
+// Button.defaultProps = {
+//   variation: "primary",
+//   size: "medium",
+// };
 
 export default Button;
