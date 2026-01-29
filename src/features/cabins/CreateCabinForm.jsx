@@ -14,6 +14,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { createCabin, isCreating } = useCreateCabin();
   const { editCabin, isEditing } = useEditCabin();
 
+
   const {
     register,
     getValues,
@@ -25,11 +26,15 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const isWorking = isCreating || isEditing;
 
   const onSubmit = (data) => {
+    console.log("data in form", data)
     const image = typeof data.image === "string" ? data.image : data.image[0];
+    const newCabin = {
+      ...data, image
+    }
 
     if (isEditSession)
       editCabin(
-        { newCabinDate: { ...data, image }, id: editId },
+        { newCabin, id: editId },
         {
           onSuccess: () => {
             resetForm();
@@ -39,7 +44,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
       );
     else
       createCabin(
-        { ...data, image },
+        { newCabin },
         {
           onSuccess: () => {
             resetForm();

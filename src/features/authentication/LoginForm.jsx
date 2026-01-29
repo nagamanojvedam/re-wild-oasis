@@ -5,11 +5,17 @@ import Form from "../../ui/Form";
 import { useState } from "react";
 import { useLogin } from "./useLogin";
 import SpinnerMini from "../../ui/SpinnerMini";
+import { GiftButton } from "../../ui/GiftButton";
 
 function LoginForm() {
-  const [email, setEmail] = useState("user@example.com");
-  const [password, setPassword] = useState("qazwsxedc");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { login, isPending } = useLogin();
+
+  const handleDemoFill = () => {
+    setEmail('demo@wildoasis.com');
+    setPassword('pass1234')
+  }
 
   const handleSubmit = (evnt) => {
     evnt.preventDefault();
@@ -52,6 +58,13 @@ function LoginForm() {
         <Button size="large" disabled={isPending}>
           {!isPending ? "Login" : <SpinnerMini />}
         </Button>
+        <GiftButton type="button"
+          onClick={handleDemoFill}
+          className="gift-btn"
+          title="Use demo credentials"
+          disabled={isPending}>
+          🎁
+        </GiftButton>
       </FormRowVertical>
     </Form>
   );

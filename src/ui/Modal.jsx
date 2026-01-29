@@ -1,7 +1,8 @@
-import { cloneElement, createContext, useContext, useState } from "react";
+import { cloneElement, createContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
+import { useModal } from "../hooks/useModal";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
@@ -66,14 +67,7 @@ function Modal({ children }) {
   );
 }
 
-function useModal() {
-  const context = useContext(ModalContext);
 
-  if (context === undefined)
-    throw new Error("Modal context used outside its provider");
-
-  return context;
-}
 
 function Open({ opens: opensWindowName, children }) {
   const { open } = useModal();
@@ -104,4 +98,4 @@ Modal.Open = Open;
 Modal.Window = Window;
 
 export default Modal;
-export { useModal };
+export { ModalContext };
