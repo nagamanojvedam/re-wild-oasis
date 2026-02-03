@@ -8,13 +8,16 @@ const StyledTable = styled.div`
   background-color: var(--color-grey-0);
   border-radius: 7px;
   overflow: hidden;
+  overflow-x: auto;
 `;
+
 const CommonRow = styled.div`
   display: grid;
   grid-template-columns: ${(props) => props.columns};
   column-gap: 2.4rem;
   align-items: center;
   transition: none;
+  min-width: 80rem;
 `;
 const StyledHeader = styled(CommonRow)`
   padding: 1.6rem 2.4rem;

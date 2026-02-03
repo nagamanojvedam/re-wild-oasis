@@ -45,6 +45,12 @@ const Header = styled.header`
     font-size: 2rem;
     margin-left: 4px;
   }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
 `;
 const Section = styled.section`
   padding: 3.2rem 4rem 1.2rem;
@@ -55,6 +61,7 @@ const Guest = styled.div`
   gap: 1.2rem;
   margin-bottom: 1.6rem;
   color: var(--color-grey-500);
+  flex-wrap: wrap;
 
   & p:first-of-type {
     font-weight: 500;
@@ -83,6 +90,12 @@ const Price = styled.div`
     height: 2.4rem;
     width: 2.4rem;
     color: currentColor !important;
+  }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: flex-start;
   }
 `;
 const Footer = styled.div`
