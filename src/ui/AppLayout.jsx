@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import { useEffect } from "react";
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -31,13 +32,21 @@ const Container = styled.div`
 
 function AppLayout() {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleSidebar = () => setIsOpen((show) => !show);
+  const toggleSidebar = () =>
+    setIsOpen((show) => !show)
+    ;
   const closeSidebar = () => setIsOpen(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (isOpen) setIsOpen(false)
+  }, [location.pathname])
 
   return (
     <StyledAppLayout>
       <Header toggleSidebar={toggleSidebar} />
-      <Sidebar isOpen={isOpen} closeSidebar={closeSidebar} />
+      <Sidebar $isOpen={isOpen} closeSidebar={closeSidebar} />
 
       <Main>
         <Container>

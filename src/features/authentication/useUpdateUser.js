@@ -11,7 +11,7 @@ export function useUpdateUser() {
       toast.success("User data updated successfully");
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
-    onError: () => toast.error("Unable to update current user"),
+    onError: () => toast.error("Unable to update user data"),
   });
 
   return { updateUser, isUpdating };
