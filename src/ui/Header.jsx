@@ -35,7 +35,9 @@ const HeaderRight = styled.div`
 function Header({ toggleSidebar }) {
   return (
     <StyledHeader>
-      <MobileMenuButton onClick={toggleSidebar}>
+      <MobileMenuButton onClick={
+        toggleSidebar
+      }>
         <HiOutlineMenu />
       </MobileMenuButton>
 

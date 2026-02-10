@@ -22,7 +22,7 @@ const StyledSidebar = styled.aside`
     transform: translateX(${(props) => (props.$isOpen ? "0" : "-100%")});
     transition: transform 0.3s ease-in-out;
     box-shadow: ${(props) =>
-      props.$isOpen ? "0 0 20px rgba(0,0,0,0.2)" : "none"};
+    props.$isOpen ? "0 0 20px rgba(0,0,0,0.2)" : "none"};
   }
 `;
 
@@ -42,11 +42,11 @@ const Overlay = styled.div`
   }
 `;
 
-function Sidebar({ isOpen, closeSidebar }) {
+function Sidebar({ $isOpen, closeSidebar }) {
   return (
     <>
-      <Overlay isOpen={isOpen} onClick={closeSidebar} />
-      <StyledSidebar isOpen={isOpen}>
+      <Overlay $isOpen={$isOpen} onClick={closeSidebar} />
+      <StyledSidebar $isOpen={$isOpen}>
         <Logo />
         <MainNav />
       </StyledSidebar>
