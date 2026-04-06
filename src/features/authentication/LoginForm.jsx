@@ -13,8 +13,8 @@ function LoginForm() {
   const { login, isPending } = useLogin();
 
   const handleDemoFill = () => {
-    setEmail('demo@wildoasis.com');
-    setPassword('pass1234')
+    setEmail(import.meta.env.VITE_DEMO_EMAIL);
+    setPassword(import.meta.env.VITE_DEMO_PASSWORD);
   }
 
   const handleSubmit = (evnt) => {

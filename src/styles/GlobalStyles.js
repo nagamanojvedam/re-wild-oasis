@@ -193,6 +193,55 @@ img {
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
 
+/* ===== Neutral Scrollbar (Light + Dark) ===== */
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+/* Invisible track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Neutral opaque thumb */
+::-webkit-scrollbar-thumb {
+  background: var(--color-grey-500);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* Hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-grey-600);
+}
+
+/* Active */
+::-webkit-scrollbar-thumb:active {
+  background: var(--color-grey-700);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-grey-500) transparent;
+}
+
+/* Dark mode: slightly lighter thumb for contrast */
+:root.dark-mode ::-webkit-scrollbar-thumb {
+  background: var(--color-grey-400);
+}
+
+:root.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-grey-300);
+}
+
+:root.dark-mode ::-webkit-scrollbar-thumb:active {
+  background: var(--color-grey-200);
+}
 
 
 `;
