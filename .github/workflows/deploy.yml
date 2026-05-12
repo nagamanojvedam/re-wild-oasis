@@ -23,6 +23,6 @@ jobs:
 
             git pull origin main
 
-            pnpm install
+            /home/ubuntu/.nvm/versions/node/v24.15.0/bin/pnpm/pnpm install --frozen-lockfile
 
-            pnpm run build
+            /home/ubuntu/.nvm/versions/node/v24.15.0/bin/pnpm/pnpm run build
