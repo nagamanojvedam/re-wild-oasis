@@ -4,7 +4,7 @@ A modern, full-stack web application built for managing boutique hotel and cabin
 
 ## 🌐 Live Demo
 
-**[Visit Re-Wild Oasis](https://re-wild-oasis.nmv-apps.com)**
+**[Visit Re-Wild Oasis](https://re-wild-oasis.nmv-apps.in)**
 
 ## 🚀 Features
 
