@@ -1,7 +1,8 @@
 {
   "name": "re-wild-oasis",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "author": "Naga Manoj Vedam",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -36,8 +37,7 @@
     "vite": "^6.2.0"
   },
   "engines": {
-    "node": "22.20.0",
-    "pnpm": "10.34.5"
-  },
-  "packageManager": "pnpm@10.34.5"
+    "node": ">=22",
+    "pnpm": ">=10"
+  }
 }
