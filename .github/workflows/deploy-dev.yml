@@ -17,7 +17,7 @@ jobs:
         run: |
           docker build \
             --secret id=env,src=/home/venom/Projects/re-wild-oasis/.env \
-            -t re-wild-oasis .
+            -t re-wild-oasis:current .
 
       - name: Stop existing container
         run: |
@@ -30,8 +30,13 @@ jobs:
             --name re-wild-oasis \
             --restart unless-stopped \
             -p 8082:80 \
-            re-wild-oasis
+            re-wild-oasis:current
 
       - name: Check container
         run: |
-          docker ps --filter "name=re-wild-oasis"
+          echo "Waiting for application startup..."
+          sleep 5
+
+          curl --fail http://localhost:8082
+
+          echo "Application is healthy"
