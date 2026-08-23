@@ -1,0 +1,58 @@
+name: re-wild-oasis - prod
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Lightsail
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.LIGHTSAIL_HOST }}
+          username: ${{ secrets.LIGHTSAIL_USER }}
+          key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+          script: |
+            set -e
+
+            cd /opt/apps/re-wild-oasis
+
+            echo "Pulling latest code..."
+            git pull origin main
+
+            echo "Creating backup image..."
+            docker tag re-wild-oasis:current re-wild-oasis:backup || true
+
+            echo "Building new image..."
+            docker build \
+              --secret id=env,src=.env \
+              -t re-wild-oasis:new .
+
+            echo "Stopping old container..."
+            docker stop re-wild-oasis || true
+            docker rm re-wild-oasis || true
+
+            echo "Starting new container..."
+            docker run -d \
+              --name re-wild-oasis \
+              --restart unless-stopped \
+              -p 8080:80 \
+              re-wild-oasis:new
+
+            echo "Waiting for container..."
+            sleep 5
+
+            echo "Checking application health..."
+            curl --fail http://localhost:8080
+
+            echo "Promoting new image..."
+            docker tag re-wild-oasis:new re-wild-oasis:current
+
+            echo "Removing temporary image..."
+            docker rmi re-wild-oasis:new || true
+
+            echo "Deployment successful."
