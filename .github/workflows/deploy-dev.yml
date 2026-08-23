@@ -55,7 +55,7 @@ jobs:
       - name: Rollback on failure
         if: failure()
         run: |
-          echo: 'Deployment failed. Rolling back...'
+          echo "Deployment failed. Rolling back..."
 
           docker stop re-wild-oasis || true
           docker rm re-wild-oasis || true
