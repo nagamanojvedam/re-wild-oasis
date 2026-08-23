@@ -1,4 +1,4 @@
-name: Dev Test
+name: re-wild-oasis - dev
 
 on:
   push:
@@ -6,17 +6,32 @@ on:
       - dev
 
 jobs:
-  test:
+  deploy:
     runs-on: self-hosted
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Test Ubuntu runner
+      - name: Build Docker image
         run: |
-          echo "GitHub Actions is running on my Ubuntu server"
-          hostname
+          docker build \
+            --secret id=env,src=.env \
+            -t re-wild-oasis .
 
-      - name: Check Docker
-        run: docker --version
+      - name: Stop existing container
+        run: |
+          docker stop re-wild-oasis || true
+          docker rm re-wild-oasis || true
+
+      - name: Run new container
+        run: |
+          docker run -d \
+            --name re-wild-oasis \
+            --restart unless-stopped \
+            -p 8082:80 \
+            re-wild-oasis
+
+      - name: Check container
+        run: |
+          docker ps --filter "name=re-wild-oasis"
