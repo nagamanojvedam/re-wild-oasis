@@ -16,43 +16,153 @@ jobs:
           host: ${{ secrets.LIGHTSAIL_HOST }}
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
-          script: |
-            set -e
+          command_timeout: 10m
 
+          script: |
             cd /opt/apps/re-wild-oasis
 
             echo "Pulling latest code..."
             git pull origin main
 
+
             echo "Creating backup image..."
-            docker tag re-wild-oasis:current re-wild-oasis:backup || true
+            docker tag re-wild-oasis:current re-wild-oasis:backup
+
 
             echo "Building new image..."
-            docker build \
+
+            if docker build \
               --secret id=env,src=.env \
               -t re-wild-oasis:new .
+            then
 
-            echo "Stopping old container..."
+              echo "Build successful."
+
+            else
+
+              echo "Build failed."
+              echo "Current application was not touched."
+              exit 1
+
+            fi
+
+
+            echo "Stopping current container..."
             docker stop re-wild-oasis || true
+
             docker rm re-wild-oasis || true
 
+
             echo "Starting new container..."
-            docker run -d \
+
+            if docker run -d \
               --name re-wild-oasis \
               --restart unless-stopped \
               -p 8080:80 \
               re-wild-oasis:new
+            then
 
-            echo "Waiting for container..."
+              echo "New container started."
+
+            else
+
+              echo "Failed to start new container."
+              echo "Rolling back..."
+
+              docker rm re-wild-oasis || true
+
+              docker run -d \
+                --name re-wild-oasis \
+                --restart unless-stopped \
+                -p 8080:80 \
+                re-wild-oasis:backup
+
+              exit 1
+
+            fi
+
+
+            echo "Waiting for application..."
             sleep 5
 
+
             echo "Checking application health..."
-            curl --fail http://localhost:8080
 
-            echo "Promoting new image..."
-            docker tag re-wild-oasis:new re-wild-oasis:current
+            if curl --fail http://localhost:8080
+            then
 
-            echo "Removing temporary image..."
-            docker rmi re-wild-oasis:new || true
+              echo "Health check passed."
 
-            echo "Deployment successful."
+
+              echo "Promoting new image..."
+
+              docker tag re-wild-oasis:new re-wild-oasis:current
+
+
+              echo "Removing temporary image..."
+
+              docker rmi re-wild-oasis:new || true
+
+
+              echo "Deployment successful."
+
+            else
+
+              echo "Health check failed."
+              echo "Rolling back..."
+
+
+              echo "Stopping failed container..."
+
+              docker stop re-wild-oasis || true
+
+              docker rm re-wild-oasis || true
+
+
+              echo "Starting backup container..."
+
+              if docker run -d \
+                --name re-wild-oasis \
+                --restart unless-stopped \
+                -p 8080:80 \
+                re-wild-oasis:backup
+              then
+
+                echo "Backup container started."
+
+              else
+
+                echo "Failed to start backup container."
+                echo "Manual intervention required."
+                exit 1
+
+              fi
+
+
+              echo "Checking rollback health..."
+
+              sleep 5
+
+
+              if curl --fail http://localhost:8080
+              then
+
+                echo "Rollback successful."
+
+              else
+
+                echo "Rollback health check failed."
+                echo "Manual intervention required."
+                exit 1
+
+              fi
+
+
+              echo "Removing failed new image..."
+
+              docker rmi re-wild-oasis:new || true
+
+
+              exit 1
+
+            fi
