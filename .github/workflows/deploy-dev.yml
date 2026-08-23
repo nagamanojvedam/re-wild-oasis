@@ -1,0 +1,23 @@
+name: re-wild-oasis-dev
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  test-runner:
+    runs-on: [self-hosted, linux, x64, ubuntu-test]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Test runner
+        run: |
+          echo "GitHub Actions is running on my Ubuntu server"
+          echo "Hostname:"
+          hostname
+
+      - name: Check Docker
+        run: docker --version
