@@ -16,7 +16,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build \
-            --secret id=env,src=.env \
+            --secret id=env,src=/home/venom/Projects/re-wild-oasis/.env \
             -t re-wild-oasis .
 
       - name: Stop existing container
