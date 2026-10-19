@@ -1,249 +1,274 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-:root {
+  :root {
+    &,
+    &.light-mode {
+      /* Warm Neutral Palette */
+      --color-grey-0: #FFFFFF;
+      --color-grey-50: #FAF8F3;
+      --color-grey-100: #F3F0E8;
+      --color-grey-200: #E9E5DC;
+      --color-grey-300: #D5D0C5;
+      --color-grey-400: #A8A397;
+      --color-grey-500: #79776D;
+      --color-grey-600: #5C5D54;
+      --color-grey-700: #43483F;
+      --color-grey-800: #343A35;
+      --color-grey-900: #242B26;
 
+      /* Status Colors */
+      --color-blue-100: #DBEAFE;
+      --color-blue-700: #1D4ED8;
 
-  &,&.light-mode {
+      --color-green-100: #DCFCE7;
+      --color-green-700: #166534;
 
- 
-  /* Grey */
-  --color-grey-0: #fff;
-  --color-grey-50: #f9fafb;
-  --color-grey-100: #f3f4f6;
-  --color-grey-200: #e5e7eb;
-  --color-grey-300: #d1d5db;
-  --color-grey-400: #9ca3af;
-  --color-grey-500: #6b7280;
-  --color-grey-600: #4b5563;
-  --color-grey-700: #374151;
-  --color-grey-800: #1f2937;
-  --color-grey-900: #111827;
+      --color-yellow-100: #FEF3C7;
+      --color-yellow-700: #92400E;
 
-  --color-blue-100: #e0f2fe;
-  --color-blue-700: #0369a1;
-  --color-green-100: #dcfce7;
-  --color-green-700: #15803d;
-  --color-yellow-100: #fef9c3;
-  --color-yellow-700: #a16207;
-  --color-silver-100: #e5e7eb;
-  --color-silver-700: #374151;
-  --color-indigo-100: #e0e7ff;
-  --color-indigo-700: #4338ca;
+      --color-silver-100: #E9E5DC;
+      --color-silver-700: #5C5D54;
 
-  --color-red-100: #fee2e2;
-  --color-red-700: #b91c1c;
-  --color-red-800: #991b1b;
+      --color-indigo-100: #F3E8FF;
+      --color-indigo-700: #7E22CE;
 
-  --backdrop-color: rgba(255, 255, 255, 0.1);
+      --color-red-100: #FEE2E2;
+      --color-red-700: #B91C1C;
+      --color-red-800: #991B1B;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12);
-    
+      /* Backdrop */
+      --backdrop-color: rgba(36, 43, 38, 0.35);
 
-  --image-grayscale: 0;
-  --image-opacity: 100%;
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(36, 43, 38, 0.05);
+      --shadow-md: 0 0.6rem 2.4rem rgba(36, 43, 38, 0.07);
+      --shadow-lg: 0 2.4rem 3.2rem rgba(36, 43, 38, 0.12);
 
- }
-  &.dark-mode {
+      /* Images */
+      --image-grayscale: 0;
+      --image-opacity: 100%;
+    }
 
+    &.dark-mode {
+      /* Deep Green-Charcoal Palette */
+      --color-grey-0: #222C25;
+      --color-grey-50: #171E19;
+      --color-grey-100: #28332C;
+      --color-grey-200: #39463D;
+      --color-grey-300: #526056;
+      --color-grey-400: #7D8A7F;
+      --color-grey-500: #A3ADA4;
+      --color-grey-600: #BEC6BF;
+      --color-grey-700: #D5DBD5;
+      --color-grey-800: #E7EBE6;
+      --color-grey-900: #F5F3EC;
 
---color-grey-0: #18212f;
---color-grey-50: #111827;
---color-grey-100: #1f2937;
---color-grey-200: #374151;
---color-grey-300: #4b5563;
---color-grey-400: #6b7280;
---color-grey-500: #9ca3af;
---color-grey-600: #d1d5db;
---color-grey-700: #e5e7eb;
---color-grey-800: #f3f4f6;
---color-grey-900: #f9fafb;
+      /* Status Colors */
+      --color-blue-100: #1E3A5F;
+      --color-blue-700: #93C5FD;
 
---color-blue-100: #075985;
---color-blue-700: #e0f2fe;
---color-green-100: #166534;
---color-green-700: #dcfce7;
---color-yellow-100: #854d0e;
---color-yellow-700: #fef9c3;
---color-silver-100: #374151;
---color-silver-700: #f3f4f6;
---color-indigo-100: #3730a3;
---color-indigo-700: #e0e7ff;
+      --color-green-100: #173D2B;
+      --color-green-700: #86EFAC;
 
---color-red-100: #fee2e2;
---color-red-700: #b91c1c;
---color-red-800: #991b1b;
+      --color-yellow-100: #493817;
+      --color-yellow-700: #FDE68A;
 
---backdrop-color: rgba(0, 0, 0, 0.3);
+      --color-silver-100: #39463D;
+      --color-silver-700: #E7EBE6;
 
---shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
---shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.3);
---shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.4);
+      --color-indigo-100: #3B2855;
+      --color-indigo-700: #D8B4FE;
 
---image-grayscale: 10%;
---image-opacity: 90%;
+      --color-red-100: #4C2023;
+      --color-red-700: #FCA5A5;
+      --color-red-800: #FECACA;
 
+      /* Backdrop */
+      --backdrop-color: rgba(0, 0, 0, 0.55);
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 0.6rem 2.4rem rgba(0, 0, 0, 0.25);
+      --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.4);
+
+      /* Images */
+      --image-grayscale: 0;
+      --image-opacity: 100%;
+    }
+
+    /* Brand: Forest Green + Champagne Gold */
+    --color-brand-50: #F0F5F1;
+    --color-brand-100: #DCE9DF;
+    --color-brand-200: #B8D2C0;
+    --color-brand-500: #47745D;
+    --color-brand-600: #315B46;
+    --color-brand-700: #244A3C;
+    --color-brand-800: #1D3C30;
+    --color-brand-900: #172F26;
+
+    /* Accent: Champagne Gold */
+    --color-accent-50: #FBF7EF;
+    --color-accent-100: #F0E4C9;
+    --color-accent-200: #E4D0A5;
+    --color-accent-500: #C5A46D;
+    --color-accent-600: #A9854D;
+    --color-accent-700: #86683B;
+
+    /* Border Radius */
+    --border-radius-tiny: 3px;
+    --border-radius-sm: 5px;
+    --border-radius-md: 7px;
+    --border-radius-lg: 9px;
   }
 
-  /* Indigo */
-  --color-brand-50: #eef2ff;
-  --color-brand-100: #e0e7ff;
-  --color-brand-200: #c7d2fe;
-  --color-brand-500: #6366f1;
-  --color-brand-600: #4f46e5;
-  --color-brand-700: #4338ca;
-  --color-brand-800: #3730a3;
-  --color-brand-900: #312e81;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 
+    /* Smooth theme transitions */
+    transition:
+      background-color 0.3s,
+      border-color 0.3s,
+      color 0.3s;
+  }
 
-  --border-radius-tiny: 3px;
-  --border-radius-sm: 5px;
-  --border-radius-md: 7px;
-  --border-radius-lg: 9px;
+  html {
+    font-size: 62.5%;
+  }
 
+  body {
+    font-family: "Poppins", sans-serif;
+    color: var(--color-grey-700);
+    background-color: var(--color-grey-50);
 
-}
+    min-height: 100vh;
+    line-height: 1.5;
+    font-size: 1.6rem;
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    transition:
+      color 0.3s,
+      background-color 0.3s;
+  }
 
-  /* Creating animations for dark mode */
-  transition: background-color 0.3s, border 0.3s;
-}
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
 
-html {
-  font-size: 62.5%;
-}
+  button {
+    cursor: pointer;
+  }
 
-body {
-  font-family: "Poppins", sans-serif;
-  color: var(--color-grey-700);
+  *:disabled {
+    cursor: not-allowed;
+  }
 
-  transition: color 0.3s, background-color 0.3s;
-  min-height: 100vh;
-  line-height: 1.5;
-  font-size: 1.6rem;
-}
+  select:disabled,
+  input:disabled,
+  textarea:disabled {
+    background-color: var(--color-grey-200);
+    color: var(--color-grey-500);
+  }
 
-input,
-button,
-textarea,
-select {
-  font: inherit;
-  color: inherit;
-}
+  input:focus-visible,
+  button:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 2px;
+  }
 
-button {
-  cursor: pointer;
-}
+  /* Buttons containing SVG icons */
+  button:has(svg) {
+    line-height: 0;
+  }
 
-*:disabled {
-  cursor: not-allowed;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-select:disabled,
-input:disabled {
-  background-color: var(--color-grey-200);
-  color: var(--color-grey-500);
-}
+  ul {
+    list-style: none;
+  }
 
-input:focus,
-button:focus,
-textarea:focus,
-select:focus {
-  outline: 2px solid var(--color-brand-600);
-  outline-offset: -1px;
-}
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
 
-/* Parent selector, finally 😃 */
-button:has(svg) {
-  line-height: 0;
-}
+  img {
+    max-width: 100%;
+    height: auto;
+    filter: grayscale(var(--image-grayscale))
+      opacity(var(--image-opacity));
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  /* Scrollbars */
+  ::-webkit-scrollbar {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
 
-ul {
-  list-style: none;
-}
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-  hyphens: auto;
-}
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-grey-400);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
 
-img {
-  max-width: 100%;
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-grey-500);
+  }
 
-  /* For dark mode */
-  filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
-}
+  ::-webkit-scrollbar-thumb:active {
+    background: var(--color-grey-600);
+  }
 
-/* ===== Neutral Scrollbar (Light + Dark) ===== */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-grey-400) transparent;
+  }
 
-/* Chrome, Edge, Safari */
-::-webkit-scrollbar {
-  width: 1.1rem;
-  height: 1.1rem;
-}
+  :root.dark-mode ::-webkit-scrollbar-thumb {
+    background: var(--color-grey-400);
+  }
 
-/* Invisible track */
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+  :root.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-grey-300);
+  }
 
-/* Neutral opaque thumb */
-::-webkit-scrollbar-thumb {
-  background: var(--color-grey-500);
-  border-radius: 999px;
-  border: 2px solid transparent;
-  background-clip: content-box;
-}
+  :root.dark-mode ::-webkit-scrollbar-thumb:active {
+    background: var(--color-grey-200);
+  }
 
-/* Hover */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-grey-600);
-}
-
-/* Active */
-::-webkit-scrollbar-thumb:active {
-  background: var(--color-grey-700);
-}
-
-/* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-grey-500) transparent;
-}
-
-/* Dark mode: slightly lighter thumb for contrast */
-:root.dark-mode ::-webkit-scrollbar-thumb {
-  background: var(--color-grey-400);
-}
-
-:root.dark-mode ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-grey-300);
-}
-
-:root.dark-mode ::-webkit-scrollbar-thumb:active {
-  background: var(--color-grey-200);
-}
-
-
+  /* Reduced motion accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 `;
 
 export default GlobalStyles;
