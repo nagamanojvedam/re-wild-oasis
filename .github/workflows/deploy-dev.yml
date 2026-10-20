@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Backup current image
         run: |
           docker tag re-wild-oasis:current re-wild-oasis:backup || true
@@ -20,7 +20,7 @@ jobs:
       - name: Build new docker image
         run: |
           docker build \
-            --secret id=env,src=/home/venom/Projects/re-wild-oasis/.env \
+            --secret id=env,src=/opt/apps/re-wild-oasis/.env \
             -t re-wild-oasis:new .
 
       - name: Stop existing container
@@ -33,7 +33,7 @@ jobs:
           docker run -d \
             --name re-wild-oasis \
             --restart unless-stopped \
-            -p 8082:80 \
+            -p 8080:80 \
             re-wild-oasis:new
 
       - name: Health check
@@ -42,16 +42,16 @@ jobs:
           echo "Waiting for application startup..."
           sleep 5
 
-          curl --fail http://localhost:8082
+          curl --fail http://localhost:8080
 
           echo "Application is healthy"
-      
+
       - name: Promote new image
         if: success()
         run: |
           docker tag re-wild-oasis:new re-wild-oasis:current
           docker rmi re-wild-oasis:new || true
-      
+
       - name: Rollback on failure
         if: failure()
         run: |
@@ -63,5 +63,5 @@ jobs:
           docker run -d \
             --name re-wild-oasis \
             --restart unless-stopped \
-            -p 8082:80 \
+            -p 8080:80 \
             re-wild-oasis:backup
