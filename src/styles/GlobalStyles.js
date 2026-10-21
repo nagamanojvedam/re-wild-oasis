@@ -131,9 +131,9 @@ const GlobalStyles = createGlobalStyle`
 
     /* Smooth theme transitions */
     transition:
-      background-color 0.2s,
-      border-color 0.2s,
-      color 0.2s;
+      background-color 0.3s,
+      border-color 0.3s,
+      color 0.3s;
   }
 
   html {
